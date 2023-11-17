@@ -32,4 +32,9 @@ int main()
 
     delete p_num3;
     p_num3 = nullptr;
+
+    // Callling delete twice on a pointer: very BAD !!
+    // delete p_num3
+    // delete p_num3
+    // our code will crush
 }

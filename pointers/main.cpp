@@ -64,4 +64,35 @@ int main()
     {
         std::cerr << " Warnning : Trying to use an invalid pointer" << std::endl;
     }
+
+
+    // When new fails
+
+    int* data = new int[10000000000000000]; // it will show an error
+
+    //solution : exception and std::nothrow
+
+    //exception
+    for (size_t i{0}; i<1000000000000; ++i)
+    {
+        try{
+            int* data = new int[10000000000000000];
+        }catch(std::exception& ex){
+            std::cout << "Something went wrong : " << ex.what() << std::endl;
+        }
+    }
+
+    // std::nothrow
+    for (size_t i{0}; i<1000000000000; ++i)
+    {
+        int* data = new(std::nothrow) int[10000000000000000];
+
+        if (data != nullptr){
+            std::cout << " Data allocated " << std::endl;
+        }else{
+            std::cout << " Data allocation faild " << std::endl;
+        }
+
+    }
+
 }

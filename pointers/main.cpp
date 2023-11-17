@@ -37,4 +37,31 @@ int main()
     // delete p_num3
     // delete p_num3
     // our code will crush
+
+    // Dangling pointers
+    // for multiple pointers to point to a same address, makr sure is one clear pointer that owns the memory
+    // (responsible for releasing when necessary), other pointers should only be able to dereference when the master pointer is valid.
+    
+    int* p_num5 {new int{382}}; // let's say this is master pointer.
+    int* p_num6 {p_num5};
+
+    // dereference the pointers and use them
+    std::cout << "p_num5: " << p_num5 << " - " << *p_num5 << std::endl;
+
+    if(!(p_num5 == nullptr))
+    { // only use slave pointer when the master is valid.
+        std::cout << "p_num6: " << p_num6 << " - " << *p_num6 << std::endl;
+    }
+
+    delete p_num5;
+    p_num5 = nullptr; // Master release the memory.
+
+    if(!(p_num5 == nullptr))
+    {// only use slave pointer when the master is valid.
+        std::cout << "p_num6: " << p_num6 << " - " << *p_num6 << std::endl;
+    }
+    else
+    {
+        std::cerr << " Warnning : Trying to use an invalid pointer" << std::endl;
+    }
 }

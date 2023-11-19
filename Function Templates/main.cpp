@@ -2,10 +2,8 @@
 #include <iostream>
 #include <string>
 
-template <typename T>
-T maximum(T a, T b) {
-  return (a > b) ? a : b;
-}
+// Declaration for TemplateTypeParametersByReference:
+// template <typename T> const T& maximum(const T& a, const T& b); //
 
 int main() {
   int a{5};
@@ -29,4 +27,20 @@ int main() {
 
   auto max = maximum<double>(a, x);
   std::cout << "max : " << max << std::endl;
+
+  // eample for TemplateTypeParametersByReference:
+  //   auto result = maximum(a, b);
+  //   std::cout << "Out - &a: " << &a << std::endl;  // 0x111abc
 }
+
+template <typename T>
+T maximum(T a, T b) {
+  return (a > b) ? a : b;
+}
+
+// Definition for TemplateTypeParametersByReference:
+
+// template <typename T> const T& maximum(const T& a, const T& b){
+//     std::cout << "In - &a: " << &a << std::endl; // // 0x111abc
+//     return (a > b ) ? a : b ;
+// }

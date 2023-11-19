@@ -30,6 +30,17 @@ class Cylinder {
 // -------------------------------------------------------------------------------//
 
 int main() {
-  Cylinder cylender1;
-  std::cout << " this is the volume : " << cylender1.volume() << std::endl;
+  Cylinder cylinder1;
+  std::cout << " this is the volume : " << cylinder1.volume() << std::endl;
+  std::cout << " this is the base radius : " << cylinder1.get_base_radius()
+            << std::endl;
+
+  Cylinder cylinder2(10, 10);
+  std::cout << "volume : " << cylinder2.volume() << std::endl;
+
+  // Modify our object
+  cylinder1.set_base_radius(100);
+  cylinder1.set_height(10);
+
+  std::cout << "volume : " << cylinder1.volume() << std::endl;
 }
